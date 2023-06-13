@@ -11,7 +11,7 @@ const routes: Array<RouteConfig> = [
 		component: () => import('../views/PersonalSpace.vue')
 	},
 	{
-		path: '/question-bank',
+		path: '/question-bank/:questions_id',
 		name: 'questionBank',
 		component: () => import('../views/QuestionBank.vue')
 	},
@@ -28,7 +28,7 @@ const routes: Array<RouteConfig> = [
 ]
 
 const router = new VueRouter( {
-	mode: 'history',
+	mode: 'hash',
 	base: process.env.BASE_URL,
 	routes
 } )

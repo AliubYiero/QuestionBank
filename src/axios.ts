@@ -19,7 +19,7 @@ const request = axios.create( {
 // 创建axios统一响应
 request.interceptors.response.use(
 	res => {
-		const status = res.data.code || res.status || 200
+		const status = res.data.status || 200
 		const msg = res.data.msg || "未知错误"
 		
 		if ( status !== 200 ) {
