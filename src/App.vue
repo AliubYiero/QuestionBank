@@ -1,32 +1,40 @@
+<style lang="scss">
+.main-container {
+	// 设置基础宽高: width & height
+	@mixin baseSize {
+		$width: 60%;
+		$height: null;
+		width: $width or auto;
+		height: $height or auto;
+	}
+	// 设置位置坐标: position
+	@mixin position {
+		margin: 0 auto;
+	}
+	/* 设置位置坐标: position */
+	@include position;
+	/* 设置基础宽高: width & height */
+	@include baseSize;
+}
+
+</style>
+
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
-  </div>
+	<el-container>
+		<el-header>
+			<header-nav/>
+		</el-header>
+		
+		<el-main class="main-container">
+			<router-view/>
+		</el-main>
+	</el-container>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import HeaderNav from '@/components/HeaderNav.vue'
+
+export default {
+	components: { HeaderNav },
 }
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+</script>
