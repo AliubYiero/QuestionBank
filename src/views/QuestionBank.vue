@@ -10,8 +10,10 @@
 			<question :questionObj="question"/>
 		</div>
 		
+		
 		<el-button @click="submitAnswers">提交答案</el-button>
 		
+		<!-- 答案显示 -->
 		<section v-if="displayAnswerList.length !== 0">
 			<el-divider/>
 			
@@ -24,12 +26,11 @@
 
 <script>
 import Question from '@/components/Question.vue'
-import { api_checkAnswerAll, api_getQuestionList } from '@/api/question'
+import { api_checkAnswerAll, api_deleteQuestion, api_getQuestionList } from '@/api/question'
 
 export default {
 	components: { Question },
 	name: 'QuestionBank',
-	
 	data() {
 		return {
 			question_list: null,
@@ -65,7 +66,7 @@ export default {
 					console.error( error );
 				}
 			)
-		}
+		},
 	},
 	
 	mounted() {

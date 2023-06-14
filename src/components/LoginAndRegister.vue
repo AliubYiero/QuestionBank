@@ -92,13 +92,14 @@
 					disabled
 				></el-input>
 			</el-form-item>
+			<el-button @click="submitFormToChangeInfo('loginForm')">修改手机/邮箱信息</el-button>
 		</template>
 	
 	</el-form>
 </template>
 
 <script>
-import { api_login, api_register } from '@/api/user'
+import { api_changeTelephoneOrEmail, api_login, api_register } from '@/api/user'
 
 export default {
 	name: 'LoginAndRegister',
@@ -177,6 +178,28 @@ export default {
 					} ).then( res => {
 						console.log( res );
 						this.submitFormToLogin( formName );
+					} ).catch(
+						error => {
+							console.error( error );
+						}
+					)
+				} else {
+					console.log( 'error submit!!' )
+					return false
+				}
+			} )
+		},
+		submitFormToChangeInfo( formName ) {
+			this.$refs[formName].validate( valid => {
+				if ( valid ) {
+					api_changeTelephoneOrEmail( {
+						username: this.form.username,
+						password: this.form.password,
+						telephone: this.form.telephone,
+						email: this.form.email
+					} ).then( res => {
+						console.log( res );
+						location.reload();
 					} ).catch(
 						error => {
 							console.error( error );

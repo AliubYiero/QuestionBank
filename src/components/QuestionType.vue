@@ -11,8 +11,8 @@
 </style>
 
 <template>
-	<div v-if="questionListType" class="question-type-container">
-		<div v-for="questionType in questionListType" :key="questionType.question_list_id">
+	<div v-if="questionBankList" class="question-type-container">
+		<div v-for="questionType in questionBankList" :key="questionType.question_list_id">
 			<el-button @click="$router.push(`/question-bank/${questionType.question_list_id}`)">选择题库</el-button>
 			<span>{{ questionType.question_list_name }}</span>
 		</div>
@@ -20,35 +20,32 @@
 </template>
 
 <script>
+
 import { api_getQuestionListType } from '@/api/question'
 
 export default {
-	name: "HeaderNav",
+	name: "QuestionType",
 	
 	data() {
 		return {
-			questionListType: null,
+			questionBankList: null,
 		}
 	},
 	
+	
 	methods: {
 		getAllQuestionType() {
-			// api_getQuestionListType().then(
-			//     res => {
-			//         this.questionListType = res.data
-			//     }
-			// )
-			console.log( 1 );
-			this.questionListType = [
-				{
-					"question_list_id": 1,
-					"question_list_name": "测试"
-				},
-				{
-					"question_list_id": 2,
-					"question_list_name": "测试2"
+			// todo fix 无法捕捉错误，会跳出报错
+			api_getQuestionListType().then(
+				res => {
+					this.$store.state.questionBankList = res.data.data;
+					this.questionBankList = this.$store.state.questionBankList;
 				}
-			]
+			).catch(
+				error => {
+					console.error( error );
+				}
+			)
 		}
 	},
 	

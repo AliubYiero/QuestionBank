@@ -14,9 +14,15 @@ export default new Vuex.Store( {
 			rights: undefined,
 		},
 		answerList: new Map(),
+		questionBankList: [],
+		showStatus: 'Question',
 	},
 	getters: {},
-	mutations: {},
+	mutations: {
+		changQuestionBank( state, newValue ) {
+			state.questionBankList = newValue;
+		}
+	},
 	actions: {},
 	modules: {}
 } )
