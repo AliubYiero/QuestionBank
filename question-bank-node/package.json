@@ -1,7 +1,6 @@
 {
 	"name": "express",
 	"version": "1.0.0",
-	"description": "",
 	"main": "13.使用Express创建简单的Web服务器.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -17,5 +16,7 @@
 		"express-session": "^1.17.3",
 		"mysql": "^2.18.1",
 		"nanoid": "^3.3.6"
-	}
+	},
+	"devDependencies": {},
+	"description": ""
 }
